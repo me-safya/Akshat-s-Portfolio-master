@@ -1,0 +1,27 @@
+@import url("https://fonts.googleapis.com/css2?family=Funnel+Sans:ital,wght@0,300..800;1,300..800&family=Playwrite+IN:wght@100..400&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Funnel+Sans:ital,wght@0,300..800;1,300..800&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Amita:wght@400;700&family=Funnel+Sans:ital,wght@0,300..800;1,300..800&family=Playwrite+IN:wght@100..400&display=swap");
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+html {
+  scroll-behavior: smooth;
+}
+
+.glass-effect {
+  @apply backdrop-blur-sm  bg-black bg-opacity-5 border border-windsor-700;
+}
+
+body::-webkit-scrollbar {
+  width: 8px;
+}
+
+body::-webkit-scrollbar-track {
+  background-color: #240047;
+}
+
+body::-webkit-scrollbar-thumb {
+  border-radius: 8px;
+  background-color: #560188;
+}
