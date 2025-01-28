@@ -117,7 +117,7 @@ const Sidebar = () => {
             <FaLinkedin className="text-windsor-400 hover:text-windsor-600" />
           </a>
           <a
-            className="https://www.instagram.com/me.safya/"
+            href="https://www.instagram.com/me.safya/"
             target="_blank"
             rel="noreferrer"
           >
