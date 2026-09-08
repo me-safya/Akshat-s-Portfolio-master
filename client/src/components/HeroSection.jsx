@@ -67,15 +67,14 @@ function HeroSection() {
               className="text-windsor-200 font-thin text-sm md:text-base text-justify"
             >
               Software Developer at Siemens Energy in Erlangen, building
-              internal data products with Snowflake, Streamlit, SQL, and Python,
-              while pursuing a Master's in Information and Communication
-              Technology with a specialization in Embedded Systems. A
-              technology-driven and
-              goal-oriented individual, aspiring learner with a self-motivating
-              personality, and sociable demeanor, eager to blossom and evolve
-              further. Open to constructive feedback and dedicated to achieving
-              excellence in all endeavors. Fluent in English and German
-              languages.
+              internal data products on Snowflake and Streamlit for the Gas
+              Insulated Switchgear product management team. My work covers the
+              full path from raw SAP and PLM data through to the pipelines,
+              dashboards, and applications that teams rely on day to day.
+              Currently completing a Master's in Information and Communication
+              Technology with a specialization in Embedded Systems, building on
+              a background in data analysis, machine learning, and electronics.
+              Fluent in English and German.
             </motion.p>
           </div>
         </div>

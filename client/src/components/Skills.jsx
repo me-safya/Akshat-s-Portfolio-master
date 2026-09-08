@@ -5,6 +5,7 @@ import { CardBody, CardContainer, CardItem } from "./ui/3d-card";
 const skills = [
   "Snowflake",
   "Streamlit",
+  "SAP",
   "Python",
   "Salesforce",
   "C",
@@ -52,10 +53,10 @@ function Skills() {
               key={skill}
             >
               <CardContainer>
-                <CardBody className=" relative group/card bg-gradient-to-br from-windsor-300 via-windsor-400 to-windsor-600 rounded-lg px-6 py-3 border border-windsor-400 shadow-lg hover:shadow-xl hover:scale-105 transition-all duration-150">
+                <CardBody className=" relative group/card bg-gradient-to-br from-windsor-800 via-windsor-900 to-windsor-950 rounded-lg px-6 py-3 border border-windsor-600 shadow-lg hover:shadow-xl hover:scale-105 transition-all duration-150">
                   <CardItem
                     translateZ="20"
-                    className=" text-windsor-950 text-sm md:text-base"
+                    className=" text-windsor-100 text-sm md:text-base"
                   >
                     {skill}
                   </CardItem>
