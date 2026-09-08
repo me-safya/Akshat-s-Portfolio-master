@@ -9,6 +9,10 @@ html {
   scroll-behavior: smooth;
 }
 
+body {
+  background-color: #2e0056;
+}
+
 .glass-effect {
   @apply backdrop-blur-sm  bg-black bg-opacity-5 border border-windsor-700;
 }

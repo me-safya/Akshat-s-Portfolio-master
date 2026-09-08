@@ -66,7 +66,7 @@ function HeroSection() {
               }}
               className="text-windsor-200 font-thin text-sm md:text-base text-justify"
             >
-              Junior Software Developer at Siemens Energy in Erlangen, building
+              Software Developer at Siemens Energy in Erlangen, building
               internal data products with Snowflake, Streamlit, SQL, and Python,
               while pursuing a Master's in Information and Communication
               Technology with a specialization in Embedded Systems. A

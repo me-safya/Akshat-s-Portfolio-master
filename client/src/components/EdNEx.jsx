@@ -26,8 +26,8 @@ const education = [
 const currentJob = {
   company: "Siemens Energy - Product Management, Gas Insulated Switchgear",
   location: "Erlangen, Germany",
-  role: "Junior Software Developer",
-  startDate: "MM/YYYY",
+  role: "Software Developer",
+  startDate: "09/2026",
   endDate: "Present",
   responsibilities: [
     "Developed a Parts Overview tool, an internal data product built on Snowflake and Streamlit, owning both the data pipelines and the application layer.",
@@ -50,7 +50,7 @@ const experience = [
     location: "Erlangen, Germany",
     role: "Working Student - Account Management Europe",
     startDate: "11/2024",
-    endDate: "MM/YYYY",
+    endDate: "08/2026",
     responsibilities: [
       "Designed and maintained comprehensive financial dashboards to support decision-making for Key Account Managers.",
       "Assisted in Salesforce-related tasks, including data entry, system optimization, and process improvements, ensuring accuracy and efficiency",
