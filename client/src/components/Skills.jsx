@@ -3,6 +3,8 @@ import { HeroHighlight, Highlight } from "./ui/hero-highlights";
 import { CardBody, CardContainer, CardItem } from "./ui/3d-card";
 
 const skills = [
+  "Snowflake",
+  "Streamlit",
   "Python",
   "Salesforce",
   "C",

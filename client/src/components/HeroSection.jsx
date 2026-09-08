@@ -66,10 +66,11 @@ function HeroSection() {
               }}
               className="text-windsor-200 font-thin text-sm md:text-base text-justify"
             >
-              Bachelor of Technology graduate with a strong foundation in
-              Python, Machine Learning, IoT, and SQL, currently pursuing a
-              Master's in Information and Communication Technology with a
-              specialization in Embedded Systems. A technology-driven and
+              Junior Software Developer at Siemens Energy in Erlangen, building
+              internal data products with Snowflake, Streamlit, SQL, and Python,
+              while pursuing a Master's in Information and Communication
+              Technology with a specialization in Embedded Systems. A
+              technology-driven and
               goal-oriented individual, aspiring learner with a self-motivating
               personality, and sociable demeanor, eager to blossom and evolve
               further. Open to constructive feedback and dedicated to achieving

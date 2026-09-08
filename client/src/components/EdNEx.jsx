@@ -24,20 +24,40 @@ const education = [
 ];
 
 const currentJob = {
-  company: "Siemens Energy",
+  company: "Siemens Energy - Product Management, Gas Insulated Switchgear",
   location: "Erlangen, Germany",
-  role: "Working Student - Account Management Europe",
-  startDate: "11/2024",
+  role: "Junior Software Developer",
+  startDate: "MM/YYYY",
   endDate: "Present",
   responsibilities: [
-    "Designed and maintained comprehensive financial dashboards to support decision-making for Key Account Managers.",
-    "Assisted in Salesforce-related tasks, including data entry, system optimization, and process improvements, ensuring accuracy and efficiency",
-    "Contributed to business development initiatives, analyzing market trends and supporting the implementation of growth strategies.",
+    "Developed a Parts Overview tool, an internal data product built on Snowflake and Streamlit, owning both the data pipelines and the application layer.",
+    "Built Snowflake views over SAP MM purchasing data to track delivery-reliability KPIs such as Liefertreue and Wunschtermintreue.",
+    "Scoped the extraction of Oracle Agile PLM data into Snowflake to support the product management team.",
   ],
-  toolsAndTechnologies: ["Power BI", "Salesforce", "Tableau", "Excel"],
+  toolsAndTechnologies: [
+    "Snowflake",
+    "Streamlit",
+    "Snowpark",
+    "SQL",
+    "Python",
+    "SAP MM data",
+  ],
 };
 
 const experience = [
+  {
+    company: "Siemens Energy",
+    location: "Erlangen, Germany",
+    role: "Working Student - Account Management Europe",
+    startDate: "11/2024",
+    endDate: "MM/YYYY",
+    responsibilities: [
+      "Designed and maintained comprehensive financial dashboards to support decision-making for Key Account Managers.",
+      "Assisted in Salesforce-related tasks, including data entry, system optimization, and process improvements, ensuring accuracy and efficiency",
+      "Contributed to business development initiatives, analyzing market trends and supporting the implementation of growth strategies.",
+    ],
+    toolsAndTechnologies: ["Power BI", "Salesforce", "Tableau", "Excel"],
+  },
   {
     company: "QRS Magnovit AG",
     location: "Liechtenstein (WFH)",
