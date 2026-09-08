@@ -66,7 +66,7 @@ function Skills() {
                         .split(" ")
                         .join("-")
                         .toLocaleLowerCase()}-logo.png`}
-                      className="h-20 w-20"
+                      className="h-16 w-16"
                     />
                   </CardItem>
                 </CardBody>
