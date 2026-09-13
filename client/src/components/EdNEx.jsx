@@ -30,7 +30,7 @@ const currentJob = {
   startDate: "09/2026",
   endDate: "Present",
   responsibilities: [
-    "Developed a Parts Overview tool, an internal data product built on Snowflake and Streamlit, owning both the data pipelines and the application layer.",
+    "Developed a Parts Overview tool, an internal data product built on Snowflake and Streamlit, designing and implementing both the data pipelines and application layer.",
     "Built Snowflake views over SAP MM purchasing data to track delivery-reliability KPIs such as Liefertreue and Wunschtermintreue.",
     "Scoped the extraction of Oracle Agile PLM data into Snowflake to support the product management team.",
   ],
