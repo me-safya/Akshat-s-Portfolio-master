@@ -77,7 +77,7 @@ export const content = {
       items: [
         {
           title: "Parts Overview Tool",
-          body: "An internal data product on Snowflake and Streamlit. I own both the data pipelines and the application layer.",
+          body: "An internal data product built on Snowflake and Streamlit, designing and implementing both the data pipelines and application layer.",
           tags: ["Snowflake", "Streamlit", "Snowpark"],
         },
         {
