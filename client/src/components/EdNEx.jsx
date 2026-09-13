@@ -98,13 +98,13 @@ function EdNEx() {
   return (
     <div
       id="ednex"
-      className="py-10 px-3 bg-gradient-to-br  from-[#8d3abd] to-windsor-700"
+      className="py-10 px-3 bg-se-tint"
     >
       <div className="max-w-7xl mx-auto flex flex-col items-start justify-evenly gap-8">
-        <div className="w-full border-l-4 border-windsor-950">
+        <div className="w-full border-l-4 border-se-purple">
           <HeroHighlight
-            gridColor={"bg-dot-thick-[#1B1534]"}
-            higlightColor={"bg-dot-thick-windsor-200"}
+            gridColor={"bg-dot-thick-se-line"}
+            higlightColor={"bg-dot-thick-se-purple"}
           >
             <motion.h1
               initial={{
@@ -149,10 +149,10 @@ function EdNEx() {
             </div>
           </div>
         </div>
-        <div className="w-full border-l-4 border-windsor-950">
+        <div className="w-full border-l-4 border-se-purple">
           <HeroHighlight
-            gridColor={"bg-dot-thick-[#1B1534]"}
-            higlightColor={"bg-dot-thick-windsor-200"}
+            gridColor={"bg-dot-thick-se-line"}
+            higlightColor={"bg-dot-thick-se-purple"}
           >
             <motion.h1
               initial={{

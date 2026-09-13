@@ -10,7 +10,7 @@ html {
 }
 
 body {
-  background-color: #2e0056;
+  background-color: #ffffff;
 }
 
 .glass-effect {
@@ -22,10 +22,10 @@ body::-webkit-scrollbar {
 }
 
 body::-webkit-scrollbar-track {
-  background-color: #240047;
+  background-color: #f8f5fb;
 }
 
 body::-webkit-scrollbar-thumb {
   border-radius: 8px;
-  background-color: #560188;
+  background-color: #c9b6de;
 }

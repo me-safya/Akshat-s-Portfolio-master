@@ -8,7 +8,7 @@ function HeroSection() {
   return (
     <div
       id="home"
-      className="bg-gradient-to-b from-windsor-800 via-windsor-900 to-windsor-950 h-screen"
+      className="bg-gradient-to-b from-white via-se-tint to-white h-screen"
     >
       <div className="mx-auto max-w-7xl h-full flex flex-col  justify-center items-center gap-6 p-4 md:p-6 lg:p-8 ">
         <HeroHighlight>
@@ -21,7 +21,7 @@ function HeroSection() {
             }}
             src="/assets/safya-profile.jpg"
             alt="Logo"
-            className="w-44 h-44 md:h-48 md:w-48 lg:h-60 lg:w-60 rounded-full p-1 bg-windsor-400 shadow-xl"
+            className="w-44 h-44 md:h-48 md:w-48 lg:h-60 lg:w-60 rounded-full p-1 bg-se-purple shadow-xl"
           />
         </HeroHighlight>
         <div>
@@ -32,7 +32,7 @@ function HeroSection() {
               x: 0,
               opacity: 1,
             }}
-            className="w-fit text-3xl pt-3  md:text-5xl  lg:text-6xl font-playwrite "
+            className="w-fit text-3xl pt-3  md:text-5xl  lg:text-6xl font-playwrite text-se-mid"
           >
             <FlipWords
               words={words}
@@ -47,11 +47,11 @@ function HeroSection() {
               x: 0,
               opacity: 1,
             }}
-            className=" font-funnel text-4xl md:text-6xl lg:text-7xl text-windsor-400 mb-10"
+            className=" font-funnel text-4xl md:text-6xl lg:text-7xl text-se-deep mb-10"
           >
             I'm{" "}
-            <span className="bg-gradient-to-br from-windsor-500  to-windsor-600 bg-clip-text text-transparent">
-              <span className="border-b-4 border-windsor-500">Ak</span>
+            <span className="bg-gradient-to-br from-se-purple  to-se-mid bg-clip-text text-transparent">
+              <span className="border-b-4 border-se-purple">Ak</span>
               shat
             </span>{" "}
             Safya
@@ -64,7 +64,7 @@ function HeroSection() {
                 y: 0,
                 opacity: 1,
               }}
-              className="text-windsor-200 font-thin text-sm md:text-base text-justify"
+              className="text-se-deep/75 font-normal text-sm md:text-base text-justify"
             >
               Software Developer at Siemens Energy in Erlangen, building
               internal data products on Snowflake and Streamlit for the Gas

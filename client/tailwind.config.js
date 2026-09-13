@@ -14,6 +14,14 @@ export default {
         amita: ["Amita", "cursive"],
       },
       colors: {
+        se: {
+          purple: "#4a2076",
+          mid: "#6b3a9e",
+          deep: "#1b1534",
+          soft: "#ede6f5",
+          tint: "#f8f5fb",
+          line: "#e5dcef",
+        },
         windsor: {
           50: "#faf5ff",
           100: "#f3e7ff",
