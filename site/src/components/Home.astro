@@ -1,0 +1,366 @@
+---
+import { getRelativeLocaleUrl } from "astro:i18n";
+import { siGmail, siInstagram, siX } from "simple-icons";
+import { faLinkedin } from "@fortawesome/free-brands-svg-icons";
+import SkillLogo from "./SkillLogo.astro";
+import { content, email, socials } from "../i18n/content.js";
+import { database, skillKey, skillKeys, sparkles } from "../lib/skills.js";
+
+const { lang } = Astro.props;
+const t = content[lang];
+const other = lang === "en" ? "de" : "en";
+
+const usedSkills = new Set(
+  [...t.now.items, ...t.experience.jobs, ...t.projects.items].flatMap((i) => i.tags ?? []).map(skillKey),
+);
+const explorerSkills = t.skills.groups.flatMap((g) => g.items).filter((skill) => usedSkills.has(skillKey(skill)));
+
+const socialIcons = {
+  LinkedIn: { viewBox: `0 0 ${faLinkedin.icon[0]} ${faLinkedin.icon[1]}`, path: faLinkedin.icon[4] },
+  X: { viewBox: "0 0 24 24", path: siX.path },
+  Instagram: { viewBox: "0 0 24 24", path: siInstagram.path },
+};
+
+const contactLinks = [
+  { label: "Gmail", href: `mailto:${email}`, title: email, viewBox: "0 0 24 24", path: siGmail.path },
+  ...socials.map((s) => ({ ...s, ...socialIcons[s.label], external: true })),
+];
+
+const groupIcons = {
+  data: database,
+  ai: sparkles,
+  languages: '<path d="M8 6l-6 6 6 6"/><path d="M16 6l6 6-6 6"/>',
+  apps: '<path d="M3 3v18h18"/><path d="M7 15l4-4 3 3 5-6"/>',
+  tools: '<path d="M14.7 6.3a4 4 0 0 0-5.4 5.4L3 18l3 3 6.3-6.3a4 4 0 0 0 5.4-5.4l-2.6 2.6-2.8-2.8z"/>',
+};
+
+const pad = (n) => String(n).padStart(2, "0");
+
+const tagChip =
+  "skill-chip rounded-full border border-transparent bg-se-tint px-2.5 py-1 text-xs font-medium text-se-purple";
+---
+
+<header class="sticky top-0 z-40 h-16 border-b border-se-line bg-white/80 backdrop-blur">
+  <nav class="mx-auto flex h-full max-w-5xl items-center justify-between px-6">
+    <a href={getRelativeLocaleUrl(lang)} class="font-semibold tracking-tight">
+      Akshat Safya
+    </a>
+    <div class="flex items-center gap-6 text-sm">
+      {t.nav.map((item) => (
+        <a href={`#${item.id}`} data-nav-link class="nav-link hidden text-se-muted transition-colors hover:text-se-purple md:inline">
+          {item.label}
+        </a>
+      ))}
+      <a
+        href={getRelativeLocaleUrl(other)}
+        hreflang={other}
+        class="rounded-full border border-se-line px-3 py-1 text-xs font-semibold uppercase tracking-wider transition-colors hover:border-se-purple hover:text-se-purple"
+      >
+        {other}
+      </a>
+    </div>
+  </nav>
+  <div data-scroll-progress class="progress-bar absolute inset-x-0 bottom-0 h-0.5"></div>
+</header>
+
+<main>
+  <!-- Page 1: who I am + what I'm building right now -->
+  <section id="home" data-spotlight class="relative flex min-h-[calc(100svh-4rem)] flex-col justify-center overflow-hidden">
+    <div aria-hidden="true" class="dot-grid pointer-events-none absolute inset-0"></div>
+    <div aria-hidden="true" class="dot-grid dot-grid-spot pointer-events-none absolute inset-0"></div>
+    <div aria-hidden="true" class="orb pointer-events-none absolute -right-32 -top-40 h-[34rem] w-[34rem] rounded-full bg-se-purple/15 blur-3xl"></div>
+    <div aria-hidden="true" class="orb orb-b pointer-events-none absolute -bottom-48 -left-24 h-[26rem] w-[26rem] rounded-full bg-[#a54ffd]/10 blur-3xl"></div>
+
+    <div data-hero class="relative mx-auto grid w-full max-w-5xl items-center gap-x-12 gap-y-6 px-6 pb-6 pt-8 lg:grid-cols-[minmax(0,1fr)_auto]">
+      <div data-reveal="scale" style="--reveal-delay: 250ms" class="lg:order-2">
+        <div class="profile-photo">
+          <img src="/photo/akshat-safya.jpg" alt="Akshat Safya" width="500" height="500" />
+        </div>
+      </div>
+      <div class="lg:order-1">
+        <p data-reveal class="mb-4 inline-flex items-center gap-2 rounded-full border border-se-line bg-white/70 px-3 py-1 text-sm font-medium text-se-purple backdrop-blur">
+          <span class="live-dot h-2 w-2 rounded-full bg-se-purple"></span>
+          {t.hero.eyebrow}
+        </p>
+        <h1 data-reveal="left" style="--reveal-delay: 150ms" class="text-4xl font-semibold tracking-tight sm:text-5xl">
+          <span class="block text-2xl font-normal text-se-muted sm:text-3xl">
+            <span data-flip={JSON.stringify(t.hero.greetings)}><span class="flip-word">{t.hero.greetings[0]}</span></span>
+            {" "}{t.hero.iam}
+          </span>
+          <span class="name-shimmer">Akshat Safya</span>
+        </h1>
+        <p data-reveal style="--reveal-delay: 350ms" class="mt-4 text-lg leading-relaxed text-se-muted">
+          {t.hero.intro}
+        </p>
+        <div data-reveal style="--reveal-delay: 550ms" class="mt-6">
+          <a href="#contact" data-magnetic class="inline-block rounded-full bg-se-purple px-6 py-3 text-sm font-semibold text-white shadow-lg shadow-se-purple/25 transition hover:bg-se-deep">
+            {t.hero.primaryCta}
+          </a>
+        </div>
+      </div>
+    </div>
+
+    <div id="now" class="relative mx-auto w-full max-w-5xl px-6 pb-8">
+      <div class="flex flex-wrap items-end justify-between gap-x-6 gap-y-2">
+        <h2 data-reveal="left" class="heading text-2xl font-semibold tracking-tight">{t.now.title}</h2>
+        <p data-reveal style="--reveal-delay: 200ms" class="text-sm text-se-muted">{t.now.lead}</p>
+      </div>
+      <div class="mt-5 grid gap-4 md:grid-cols-3">
+        {t.now.items.map((item, i) => (
+          <div data-reveal="scale" style={`--reveal-delay: ${300 + i * 150}ms`}>
+            <article
+              data-tilt
+              data-skills={skillKeys(item.tags)}
+              data-kind={t.skills.kinds.now}
+              data-title={item.title}
+              class="tilt flex h-full flex-col rounded-2xl border border-se-line bg-white/90 p-5 backdrop-blur"
+            >
+              <span class="text-xs font-semibold tabular-nums text-se-purple/50">{pad(i + 1)}</span>
+              <h3 class="mt-1.5 font-semibold">{item.title}</h3>
+              <p class="mt-2 flex-1 text-sm leading-relaxed text-se-muted">{item.body}</p>
+              <div class="mt-4 flex flex-wrap gap-2">
+                {item.tags.map((tag) => (
+                  <button type="button" data-skill={skillKey(tag)} data-label={tag} aria-pressed="false" class={tagChip}>{tag}</button>
+                ))}
+              </div>
+            </article>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- Page 2: toolkit -->
+  <section id="skills" class="border-y border-se-line bg-se-tint/40">
+    <div class="mx-auto w-full max-w-5xl px-6 py-10">
+      <div class="flex flex-wrap items-end justify-between gap-4">
+        <h2 data-reveal="left" class="heading text-3xl font-semibold tracking-tight">{t.skills.title}</h2>
+        <p data-reveal style="--reveal-delay: 200ms" class="text-sm text-se-muted">{t.skills.hint}</p>
+      </div>
+      <div class="mt-6 grid gap-4 md:grid-cols-2 lg:grid-cols-3">
+        {t.skills.groups.map((group, gi) => (
+          <div data-reveal="scale" style={`--reveal-delay: ${150 + gi * 120}ms`} class:list={["flex", group.wide && "md:col-span-2"]}>
+            <article data-spotlight class="toolkit-card">
+              <div aria-hidden="true" class="toolkit-glow"></div>
+              <div class="relative flex items-start gap-3">
+                <span class="toolkit-icon" aria-hidden="true">
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" set:html={groupIcons[group.id]} />
+                </span>
+                <div>
+                  <h3 class="font-semibold">{group.name}</h3>
+                  <p class="text-sm text-se-muted">{group.desc}</p>
+                </div>
+              </div>
+              <div class:list={["relative mt-5 grid gap-1.5", group.wide && "sm:grid-cols-2 sm:gap-x-3"]}>
+                {group.items.map((skill) => {
+                  const key = skillKey(skill);
+                  return usedSkills.has(key) ? (
+                    <button type="button" data-skill={key} data-label={skill} aria-pressed="false" class="skill-tile skill-chip">
+                      <SkillLogo name={skill} />
+                      <span class="min-w-0 leading-snug">{skill}</span>
+                      <svg aria-hidden="true" class="skill-arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                        <path d="M5 12h14" />
+                        <path d="M13 6l6 6-6 6" />
+                      </svg>
+                    </button>
+                  ) : (
+                    <div class="skill-tile skill-tile-static">
+                      <SkillLogo name={skill} />
+                      <span class="min-w-0 leading-snug">{skill}</span>
+                    </div>
+                  );
+                })}
+              </div>
+            </article>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- Page 3: journey — experience timeline beside education -->
+  <section id="experience">
+    <div class="mx-auto grid w-full max-w-5xl gap-14 px-6 py-16 lg:grid-cols-3">
+      <div class="lg:col-span-2">
+        <h2 data-reveal="left" class="heading text-3xl font-semibold tracking-tight">{t.experience.title}</h2>
+        <div data-timeline class="relative mt-10">
+          <span aria-hidden="true" data-timeline-beam class="timeline-beam"></span>
+          <ol class="space-y-10 border-l-2 border-se-line pl-8">
+            {t.experience.jobs.map((job, i) => (
+              <li
+                data-skills={skillKeys(job.tags)}
+                data-kind={t.skills.kinds.experience}
+                data-title={`${job.role} · ${job.company}`}
+                class="timeline-item relative"
+              >
+                <span aria-hidden="true" data-timeline-dot class:list={["timeline-dot", i === 0 && "is-current-job"]}></span>
+                <div data-reveal="right" style="--reveal-delay: 120ms">
+                  <div class="flex flex-wrap items-baseline justify-between gap-x-4 gap-y-1">
+                    <h3 class="text-lg font-semibold">{job.role}</h3>
+                    <span class="text-sm tabular-nums text-se-muted">{job.period}</span>
+                  </div>
+                  <p class="mt-1 text-sm text-se-purple">
+                    {job.company}{job.detail && ` · ${job.detail}`}
+                    <span class="text-se-muted"> · {job.place}</span>
+                  </p>
+                  <ul class="mt-3 list-disc space-y-1.5 pl-5 text-sm leading-relaxed text-se-muted marker:text-se-line">
+                    {job.points.map((point) => <li>{point}</li>)}
+                  </ul>
+                  <div class="mt-4 flex flex-wrap gap-2">
+                    {job.tags.map((tag) => (
+                      <button type="button" data-skill={skillKey(tag)} data-label={tag} aria-pressed="false" class={tagChip}>{tag}</button>
+                    ))}
+                  </div>
+                </div>
+              </li>
+            ))}
+          </ol>
+        </div>
+      </div>
+
+      <aside id="education">
+        <h2 data-reveal="left" class="heading text-3xl font-semibold tracking-tight">{t.education.title}</h2>
+        <ul class="mt-10 grid gap-4 sm:grid-cols-2 lg:grid-cols-1">
+          {t.education.items.map((edu, i) => (
+            <li data-reveal="right" style={`--reveal-delay: ${200 + i * 150}ms`} class="rounded-2xl border border-se-line bg-white p-5">
+              <h3 class="font-semibold leading-snug">{edu.degree}</h3>
+              <p class="mt-1 text-sm text-se-muted">{edu.school}</p>
+              <p class="mt-3 flex flex-wrap items-center gap-x-3 gap-y-2 text-sm">
+                <span class="tabular-nums text-se-purple">{edu.period}</span>
+                {edu.grade && (
+                  <span class="rounded-full bg-se-tint px-2.5 py-0.5 text-xs font-semibold tabular-nums text-se-purple">{edu.grade}</span>
+                )}
+              </p>
+            </li>
+          ))}
+        </ul>
+      </aside>
+    </div>
+  </section>
+
+  <!-- Page 4: projects, then contact -->
+  <section id="projects" class="bg-se-tint">
+    <div class="mx-auto w-full max-w-5xl px-6 py-16">
+      <h2 data-reveal="left" class="heading text-3xl font-semibold tracking-tight">{t.projects.title}</h2>
+      <div class="mt-10 grid gap-5 md:grid-cols-2">
+        {t.projects.items.map((item, i) => (
+          <div data-reveal={i % 2 === 0 ? "left" : "right"} style={`--reveal-delay: ${150 + (i % 2) * 150}ms`}>
+            <article
+              data-tilt
+              data-skills={skillKeys(item.tags)}
+              data-kind={t.skills.kinds.project}
+              data-title={item.title}
+              class="tilt flex h-full flex-col rounded-2xl border border-se-line bg-white p-6"
+            >
+              <h3 class="text-lg font-semibold">{item.title}</h3>
+              <p class="mt-3 flex-1 text-sm leading-relaxed text-se-muted">{item.body}</p>
+              <div class="mt-5 flex flex-wrap gap-2">
+                {item.tags.map((tag) => (
+                  <button type="button" data-skill={skillKey(tag)} data-label={tag} aria-pressed="false" class={tagChip}>{tag}</button>
+                ))}
+              </div>
+            </article>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <section id="contact" data-spotlight class="relative overflow-hidden bg-se-deep text-white">
+    <div aria-hidden="true" class="spotlight-glow pointer-events-none absolute inset-0"></div>
+    <div class="relative mx-auto flex w-full max-w-5xl flex-wrap items-end justify-between gap-x-10 gap-y-8 px-6 py-16">
+      <div>
+        <h2 data-reveal="left" class="heading heading-light text-4xl font-semibold tracking-tight sm:text-5xl">{t.contact.title}</h2>
+        <p data-reveal style="--reveal-delay: 250ms" class="mt-6 max-w-xl text-white/70">{t.contact.lead}</p>
+      </div>
+      <ul data-reveal style="--reveal-delay: 400ms" class="flex flex-wrap items-center gap-3">
+        {contactLinks.map((link) => (
+          <li>
+            <a
+              href={link.href}
+              title={link.title}
+              target={link.external ? "_blank" : undefined}
+              rel={link.external ? "noreferrer" : undefined}
+              data-magnetic
+              class="contact-pill"
+            >
+              <svg aria-hidden="true" viewBox={link.viewBox} fill="currentColor">
+                <path d={link.path} />
+              </svg>
+              <span>{link.label}</span>
+            </a>
+          </li>
+        ))}
+      </ul>
+    </div>
+  </section>
+</main>
+
+<footer class="bg-se-deep text-white/50">
+  <div class="mx-auto flex max-w-5xl flex-wrap items-center gap-x-2 gap-y-1 border-t border-white/10 px-6 py-6 text-xs">
+    <span>© {new Date().getFullYear()} Akshat Safya</span>
+    <span aria-hidden="true">·</span>
+    <span class="inline-flex items-center gap-1.5">
+      {t.footer}
+      <svg aria-hidden="true" class="heart" viewBox="0 0 24 24" fill="currentColor">
+        <path d="M12 21s-7.5-4.6-10-9.3C.4 8.6 2.3 4.5 6 4.5c2.2 0 3.6 1.2 4.4 2.4h3.2c.8-1.2 2.2-2.4 4.4-2.4 3.7 0 5.6 4.1 4 7.2C19.5 16.4 12 21 12 21z" />
+      </svg>
+    </span>
+  </div>
+</footer>
+
+<nav aria-label={t.pagesLabel} class="page-dots">
+  <span data-page-counter class="page-counter">{pad(1)} / {pad(t.pages.length)}</span>
+  <ol>
+    {t.pages.map((page) => (
+      <li>
+        <a href={`#${page.id}`} data-page-link aria-label={page.label} class="page-dot">
+          <span aria-hidden="true" class="page-dot-label">{page.label}</span>
+        </a>
+      </li>
+    ))}
+  </ol>
+</nav>
+
+<div
+  data-explorer
+  data-pick={t.skills.pick}
+  data-used-in-one={t.skills.usedInOne}
+  data-used-in-many={t.skills.usedInMany}
+  class="explorer"
+>
+  <button type="button" data-explorer-launch class="explorer-launch">
+    <svg aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" set:html={sparkles} />
+    {t.skills.launch}
+  </button>
+  <div data-explorer-sheet role="region" aria-label={t.skills.explorer} class="explorer-sheet" inert>
+    <div class="explorer-top">
+      <p class="explorer-title">{t.skills.explorer}</p>
+      <span data-explorer-counter aria-live="polite" class="explorer-counter"></span>
+      <button type="button" data-explorer-prev aria-label={t.skills.prev} class="explorer-icon-btn" disabled>
+        <svg aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 6l-6 6 6 6" /></svg>
+      </button>
+      <button type="button" data-explorer-next aria-label={t.skills.next} class="explorer-icon-btn" disabled>
+        <svg aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 6l6 6-6 6" /></svg>
+      </button>
+      <button type="button" data-explorer-close aria-label={t.skills.close} class="explorer-icon-btn">
+        <svg aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M6 6l12 12M18 6L6 18" /></svg>
+      </button>
+    </div>
+    <div data-explorer-chips data-scroll-row class="explorer-chips">
+      {explorerSkills.map((skill) => (
+        <button type="button" data-skill={skillKey(skill)} data-label={skill} aria-pressed="false" class="skill-chip explorer-chip">
+          <SkillLogo name={skill} />
+          {skill}
+        </button>
+      ))}
+    </div>
+    <ul data-explorer-results data-scroll-row class="explorer-results">
+      <li class="explorer-hint">{t.skills.pick}</li>
+    </ul>
+  </div>
+</div>
+
+<script>
+  import "../scripts/effects.js";
+</script>
