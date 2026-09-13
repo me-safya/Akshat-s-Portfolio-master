@@ -352,18 +352,43 @@ function initScrollRows() {
       row.classList.toggle("can-scroll-right", row.scrollLeft < max - 2);
     };
 
-    // a plain mouse wheel only scrolls vertically, so map it onto the row;
-    // at either end the page takes over again instead of trapping the wheel
+    // a plain mouse wheel only scrolls vertically, so map it onto the row and ease towards
+    // the target; at either end the page takes over again instead of trapping the wheel
+    let target = 0;
+    let current = 0;
+    let frame = null;
+
+    const glide = () => {
+      current += (target - current) * 0.2;
+      if (Math.abs(target - current) < 0.5) {
+        current = target;
+        frame = null;
+      } else {
+        frame = requestAnimationFrame(glide);
+      }
+      row.scrollLeft = current;
+    };
+
     row.addEventListener(
       "wheel",
       (event) => {
         if (Math.abs(event.deltaY) <= Math.abs(event.deltaX)) return;
         const max = row.scrollWidth - row.clientWidth;
-        const atStart = row.scrollLeft <= 0 && event.deltaY < 0;
-        const atEnd = row.scrollLeft >= max - 1 && event.deltaY > 0;
-        if (max <= 0 || atStart || atEnd) return;
+        if (max <= 0) return;
+
+        if (!frame) target = current = row.scrollLeft;
+        const unit = event.deltaMode === 1 ? 40 : event.deltaMode === 2 ? row.clientWidth : 1;
+        const next = Math.min(max, Math.max(0, target + event.deltaY * unit));
+        if (next === target) return;
+
         event.preventDefault();
-        row.scrollLeft += event.deltaY;
+        target = next;
+        if (reduceMotion) {
+          current = target;
+          row.scrollLeft = target;
+        } else if (!frame) {
+          frame = requestAnimationFrame(glide);
+        }
       },
       { passive: false },
     );

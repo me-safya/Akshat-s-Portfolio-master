@@ -750,9 +750,25 @@ html[data-skill-active] .timeline-item.is-match .timeline-dot {
   height: 1rem;
 }
 
+/* registered so the edge fades can animate instead of snapping on and off */
+@property --fade-left {
+  syntax: "<length>";
+  inherits: false;
+  initial-value: 0px;
+}
+
+@property --fade-right {
+  syntax: "<length>";
+  inherits: false;
+  initial-value: 0px;
+}
+
 .explorer-chips,
 .explorer-results {
   position: relative;
+  transition:
+    --fade-left 0.3s ease,
+    --fade-right 0.3s ease;
   display: flex;
   gap: 0.5rem;
   overflow-x: auto;
